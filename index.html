@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Termo test</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <section>       
-         <h1>Termo</h1>
-         <input type="text"/>
-         <button onclick="checkLetter()">Enviar</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>✍️ Termo test</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section>
+      <h1>Termo</h1>
+      <span>Não use acentos</span>
+
+      <form action="#" onsubmit="checkLetter(); return false">
+        <input
+          placeholder="Digite uma palavra de 5 letras"
+          type="text"
+          id="text"
+          name="text"
+          minlength="5"
+          maxlength="5"
+        />
+      </form>
     </section>
 
-    <main>
-        
-
-    </main>
-
+    <main></main>
+    <section class="letters-gone"></section>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

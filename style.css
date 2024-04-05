@@ -1,34 +1,74 @@
-*{
-
-    box-sizing:  border-box;
-    padding: 0;
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: rgba(29, 27, 27, 0.878);
 }
 
+body {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+span {
+  font-size: 0.7em;
+}
+
+input,
+button {
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid rgba(128, 128, 128, 0.285);
+  border-radius: 0.4em;
+  text-transform: lowercase;
+  padding: 0.8em;
+}
 
 table {
-
-border: 0;
-border-spacing: 0.5em;
-
-
+  padding: 1em;
+  border: 0;
+  border-spacing: 0.5em;
 }
-td,tr{
-border: 1px solid rgba(128, 128, 128, 0.192);
-border-radius: 5px;
-padding: 0.8em;
-font-size: 1.5em;
-text-align: center;
-text-transform: uppercase;
+
+td,
+tr {
+  border: 1px solid rgba(128, 128, 128, 0.192);
+  border-radius: 5px;
+  padding: 0.5em;
+  text-align: center;
+  text-transform: uppercase;
+  width: 5em;
+  height: 5em;
+  font-weight: 800;
+}
+
+tr:hover {
+  transform: scale(1.03);
+  transition: 100ms linear;
 }
 
 tr.highlight {
-background-color: aliceblue;
-border: 5px solid rgba(153, 240, 243, 0.192);
+  background-color: aliceblue;
+  border: 5px solid rgba(153, 240, 243, 0.192);
 
-font-weight: 800;
-color:rgb(22, 72, 116);
+  color: rgb(22, 72, 116);
+}
 
+.yellow {
+  background-color: #e0f76d;
+}
+
+.red {
+  background-color: #f57242;
+}
+
+.green {
+  background-color: #6df776;
 }
