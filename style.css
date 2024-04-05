@@ -47,6 +47,8 @@ tr {
   width: 5em;
   height: 5em;
   font-weight: 800;
+  visibility: hidden;
+  transition: 100ms linear;
 }
 
 tr:hover {
@@ -56,8 +58,6 @@ tr:hover {
 
 tr.highlight {
   background-color: aliceblue;
-  border: 5px solid rgba(153, 240, 243, 0.192);
-
   color: rgb(22, 72, 116);
 }
 
@@ -71,4 +71,48 @@ tr.highlight {
 
 .green {
   background-color: #6df776;
+}
+
+.letters-gone {
+  width: 100%;
+  text-align: center;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+svg {
+  width: 1em;
+  animation: turnItReload 100ms linear;
+}
+
+section {
+  width: 20%;
+  position: relative;
+}
+
+input {
+  flex: 1;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  gap: 0.3em;
+}
+
+@keyframes turnItReload {
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes appearTable {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

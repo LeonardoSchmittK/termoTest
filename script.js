@@ -971,7 +971,7 @@ function getRandomWord() {
 
   return words[randomN];
 }
-let actualWord = "anciã";
+let actualWord = getRandomWord();
 let word = actualWord.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
 async function checkWordExistence(wordToCheck) {
@@ -998,7 +998,7 @@ async function checkWordExistence(wordToCheck) {
   });
 }
 
-//fetchWord();
+let letters = [];
 
 function printTables() {
   const template = `
@@ -1083,28 +1083,28 @@ function printTables() {
 }
 
 printTables();
+
 let counter = 0;
 
 function checkLetter() {
   const input = document.querySelector("input").value.toLowerCase();
-
+  document.querySelector("input").value = "";
+  document.querySelector("input").focus();
   counter++;
   if (input === word && input.length == word.length) {
     document.querySelector("h1").innerText = "🥳 Parabéns: " + actualWord;
     return;
   } else if (counter == 5) {
-    alert("GAME OVER ");
+    document.querySelector("h1").innerText = "❌ Game over: " + actualWord;
     counter = 5;
   } else if (counter >= 6) {
     return;
   }
 
-  document.querySelector("input").value = "";
-  document.querySelector("input").focus();
-
   let template = ``;
 
   for (let i = 0; i < 5; ++i) {
+    letters.push(input[i]);
     template += `
         <td>
 
@@ -1114,7 +1114,7 @@ function checkLetter() {
         </td>
     `;
   }
-
+  printGoneLetters(letters);
   const placeToAdd = document.getElementById(`${counter}`);
 
   placeToAdd.innerHTML = template;
@@ -1130,7 +1130,11 @@ function checkLetter() {
     allRows[counter].className += " highlight";
   }
 
-  checkLettersIncidence(counter, placeToAdd);
+  printTableAnimations();
+
+  setTimeout(() => {
+    checkLettersIncidence(counter, placeToAdd);
+  }, 200);
 }
 
 function checkLettersIncidence(row, rowEl) {
@@ -1161,6 +1165,10 @@ function checkLettersIncidence(row, rowEl) {
       roww[i].className += " green";
 
       for (let x = 0; x < i; ++x) {
+        console.log(lettersOfRowEl[i].trim());
+        console.log(roww[x].innerHTML + " <<<");
+        console.log("<<<<<<<<<<OOEOE>>>>>>>>>>");
+
         if (
           roww[x].classList.contains("yellow") &&
           roww[x].innerText.toLowerCase() === lettersOfRowEl[i].trim()
@@ -1178,3 +1186,36 @@ function checkLettersIncidence(row, rowEl) {
     // }
   }
 }
+
+function printGoneLetters(arr) {
+  noRepeat = Array.from(new Set(arr.join(" ")));
+  document.querySelector("section.letters-gone").innerText = " ";
+  document.querySelector("section.letters-gone").innerHTML +=
+    noRepeat.join(" - ");
+}
+
+function reloadPage() {
+  window.location.reload();
+}
+
+function printTableAnimations() {
+  const allTds = document.querySelectorAll("td");
+  let counter = 0;
+
+  let timer = setInterval(() => {
+    allTds[counter].style.visibility = "visible";
+    allTds[counter].style.transition = "100ms linear";
+    counter++;
+
+    if (counter >= allTds.length) {
+      clearInterval(timer);
+    }
+  }, 20);
+}
+printTableAnimations();
+
+document.querySelector("form").addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  console.log("Form submission prevented.");
+});
